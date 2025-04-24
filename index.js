@@ -9,10 +9,19 @@ app.use(bodyParser.json());
 app.use(cors());
 const port = process.env.PORT || 3000;
 app.get("/", (req, res) => {
-    res.send("Hello wold");
+    res.send("Hello wrold");
 });
 
-const sequelize = require("./src/config/db");
+const upload = require("./src/routes/upload.file.routes");
+app.use(upload);
+
+// const sequelize = require("./src/config/db");
+
+require("./src/routes/user.routes")(app);
+require("./src/routes/category.routes")(app);
+require("./src/routes/product.routes")(app);
+
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
